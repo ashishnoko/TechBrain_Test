@@ -4,6 +4,7 @@ import time
 
 def setup():
     driver = webdriver.Chrome()
+    driver.maximize_window()
     driver.get("https://techbrain.ai/")
     return driver
 
@@ -25,30 +26,45 @@ def lists():
     go_to_quiz.click()
     time.sleep(5)
     
-    a = 0
-    while(a<5):
+    quiz_options= driver.find_elements(By.XPATH,'//li[@class="mb-8 last:mb-0 flex"]')
+    length = len(quiz_options)
+    
+    for i in range(length):
         
-        check_box = driver.find_element(By.XPATH,'//label[@class="checkbox"]')
-        check_box.click()
+        quiz_options= driver.find_elements(By.XPATH,'//li[@class="mb-8 last:mb-0 flex"]')
+        checkbox_clk = driver.find_element(By.XPATH,'//label[@class="checkbox"]').click()
+        for y in quiz_options:
+            print(y)
         time.sleep(5)
-        a = a + 1
-        
-    
         
         
 
+        
+        
+            
+        
+        
+    
+    
+    
+    #for i in range(len(quiz_options)):
+        
+        
+   
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        # quiz_options= driver.find_elements(By.XPATH,'//li')
+        # quiz_options[i] = driver.find_element(By.XPATH,'//label[@class="checkbox"]').click()
+        
+        # time.sleep(5)
+        
+        
+        
+        #submitbutton
+        #submit_btn = driver.find_element(By.XPATH,'//button[@type="submit"]')
+        #submit_btn.click()
+        
+        
+        
     
     teardown(driver)
 

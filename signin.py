@@ -17,15 +17,15 @@ def signin():
     driver = setup()
     sign_in = driver.find_element(By.XPATH, "(//a[@href='/users/sign_in']/span)[1]")
     sign_in.click()
-    time.sleep(5)
+    
     email = driver.find_element(By.XPATH,"//input[@id='user_email']")
     email.send_keys('nokoaashish@gmail.com')
-    time.sleep(5)
+
     password = driver.find_element(By.XPATH,'//input[@id="user_password"]')
     password.send_keys('ashish')
     btn = driver.find_element(By.XPATH,'//input[@type="submit"]')
     btn.click()
-    time.sleep(5)
+    
     
     lists = driver.find_element(By.XPATH,'(//a[@class="flex mb-3"]/span[@class="text-blue-700"])[1]')
     lists.click()
