@@ -15,55 +15,68 @@ def teardown(driver):
     driver.quit()
     
 def sign_up():
+    driver = setup()
+    wait = WebDriverWait(driver,10)
     
-    try:
-        driver = setup()
-        sign_in = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "(//a[@href='/users/sign_in']/span)[1]")))
-        sign_in.click()
-    
-        sign_up = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@href='/users/sign_up']")))
-        
-    
-        sign_up.click()
-        time.sleep(5)
-    
-        user_email = driver.find_element(By.XPATH,'//input[@id="user_email"]')
-        user_email.send_keys("janehir273@calmpros.com")
-    
-        password = driver.find_element(By.XPATH,'//input[@id="user_password"]')
-        password.send_keys('ashish')
-    
-        confirmation_password = driver.find_element(By.XPATH,'//input[@id="user_password_confirmation"]')  
-        confirmation_password.send_keys('ashish')
-    
-        button = driver.find_element(By.XPATH,'//input[@value="Sign up"]')
-        button.click()
-        time.sleep(5)
-        
-        driver.get("https://temp-mail.org/en/view/67c58c73aa538e002bfc801c")
-        reset_link = driver.find_element(By.XPATH,'//a[contains(text(),"http")]')
-        reset_link.click()
-        
-        #signin 
-        
-        email = driver.find_element(By.XPATH,'//input[@id="user_email"]')
-        email.send_keys('janehir273@calmpros.com')
-        
-        email = driver.find_element(By.XPATH,'//input[@id="user_password"]')
-        password.send_key('ashish')
-        
-        submit_btn =driver.find_element(By.XPATH,'//input[@type="submit"]')
-        submit_btn.click()
-        
-        
-        
-        
-        
-        
-    except Exception as e:
-        print(f'Error as {e}')
+    sign_in =driver.find_element(By.XPATH, "(//a[@href='/users/sign_in']/span)[1]")
+    sign_in.click()
+    time.sleep(3)
     
     
+    sign_up = driver.find_element(By.XPATH, "//a[@href='/users/sign_up']")
+    sign_up.click()
+    time.sleep(3)
+    
+    
+    
+    user_email = wait.until(EC.presence_of_element_located((By.XPATH,'//input[@id="user_email"]')))
+    user_email.send_keys("sunil@endtest-mail.io")
+    
+    password = wait.until(EC.presence_of_element_located((By.XPATH,'//input[@id="user_password"]')))
+    password.send_keys('ashish')
+    
+    confirmation_password = wait.until(EC.presence_of_element_located((By.XPATH,'//input[@id="user_password_confirmation"]')))
+    confirmation_password.send_keys('ashish')
+    
+    button = wait.until(EC.presence_of_element_located((By.XPATH,'//input[@value="Sign up"]')))
+    button.click()
+    time.sleep(3)
+    
+    
+       
+    driver.get("https://app.endtest.io/mailbox?email=sunil@endtest-mail.io")
+    
+    
+    mail = wait.until(EC.presence_of_element_located((By.XPATH,'//div[@class="email_list"]')))
+    mail.click()
+    time.sleep(2)
+    
+
+    reset_link = driver.find_element(By.XPATH,'(//a[@href])[1]')
+    reset_link.click()
+    time.sleep(4)
+    
+    
+    
+    
+    driver.get("https://techbrain.ai/")
+    sign_inagain= driver.find_element(By.XPATH,'(//span[contains(text(),"Sign in")])[1]')
+    sign_inagain.click()
+        
+    #Again_signin 
+    
+    email = wait.until(EC.presence_of_element_located((By.XPATH,'//input[@id="user_email"]')))
+    email.send_keys('sunil@endtest-mail.io')
+    
+        
+    password = wait.unitl(EC.presence_of_element_located((By.XPATH,'//input[@id="user_password"]')))
+    password.send_key('ashish')
+    
+        
+    submit_btn =wait.until(EC.element_to_be_clickable((By.XPATH,'//input[@type="submit"]')))
+    submit_btn.click()
+        
+        
     teardown(driver)
     
 sign_up()
