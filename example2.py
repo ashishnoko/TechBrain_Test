@@ -5,14 +5,14 @@ import time
 def setup():
     driver = webdriver.Chrome()
     driver.get("https://techbrain.ai/")
-    driver.maximize_window()  # Optional: Maximize the browser for better element visibility
+    driver.maximize_window()  
     return driver
 
 def teardown(driver):
     driver.quit()
     
     
-def accessAllLessonFromCourseDescriptionPage():
+def accessAllLesson():
     driver = setup()
     courseListLink = driver.find_element(By.XPATH,'(//span[contains(text(),"Lists")])[1]').click()
     time.sleep(2)
@@ -26,4 +26,4 @@ def accessAllLessonFromCourseDescriptionPage():
         time.sleep(1)
     print("All lesson traversed")
     teardown(driver)
-accessAllLessonFromCourseDescriptionPage()
+accessAllLesson()
